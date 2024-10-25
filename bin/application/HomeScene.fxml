@@ -15,7 +15,7 @@
       <Button layoutX="447.0" layoutY="152.0" mnemonicParsing="false" onAction="#switchToNewAccountScene" prefHeight="51.0" prefWidth="130.0" text="Add New Account" />
       <Button layoutX="447.0" layoutY="528.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="130.0" text="Add New Transaction" />
       <Button layoutX="433.0" layoutY="242.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="158.0" text="Schedule New Transaction" />
-      <Button layoutX="447.0" layoutY="333.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="130.0" text="View Accounts" />
+      <Button layoutX="447.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToViewAccountScene" prefHeight="51.0" prefWidth="130.0" text="View Accounts" />
       <Button layoutX="447.0" layoutY="429.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="130.0" text="View Transactions" />
    </children>
 </AnchorPane>
