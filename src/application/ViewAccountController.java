@@ -46,6 +46,10 @@ public class ViewAccountController implements Initializable {
 		accountList = loadAccountData();
 		
 		accountTableView.setItems(accountList);
+		
+		openingDateCol.setSortType(TableColumn.SortType.DESCENDING);
+		accountTableView.getSortOrder().add(openingDateCol);
+		accountTableView.sort();
 	}
 
 	// maybe try opencsv here
