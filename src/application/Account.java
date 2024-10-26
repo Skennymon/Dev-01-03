@@ -5,20 +5,40 @@ import javafx.scene.control.DatePicker;
 public class Account {
 	
 	private String accountName;
-	private DatePicker accountOpeningDate;
-	private int accountOpeningBalance;
+	private String accountOpeningDate;
+	private String accountOpeningBalance;
 	
-	public void setAccountName() {
-		
+	public Account(String accountName, String accountOpeningDate, String accountOpeningBalance) {
+		this.accountName = accountName;
+		this.accountOpeningBalance = accountOpeningBalance;
+		this.accountOpeningDate = accountOpeningDate;
 	}
 	
-	public void setAccountOpeningDate() {
-		
+	public String getAccountName() {
+		return accountName;
 	}
 	
-	public void setAccountOpeningBalance() {
-		
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
+
+	public String getAccountOpeningDate() {
+		return accountOpeningDate;
+	}
+
+	public void setAccountOpeningDate(String accountOpeningDate) {
+		this.accountOpeningDate = accountOpeningDate;
+	}
+
+	public String getAccountOpeningBalance() {
+		return accountOpeningBalance;
+	}
+
+	public void setAccountOpeningBalance(String accountOpeningBalance) {
+		this.accountOpeningBalance = accountOpeningBalance;
+	}
+	
+	
 	
 	
 }

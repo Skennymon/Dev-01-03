@@ -17,7 +17,7 @@
       <TextField fx:id="accountNameInput" layoutX="382.0" layoutY="165.0" prefHeight="89.0" prefWidth="261.0" promptText="Account Name" />
       <TextField fx:id="accountOpeningBalanceInput" layoutX="382.0" layoutY="384.0" prefHeight="112.0" prefWidth="261.0" promptText="Opening Account Balance" />
       <DatePicker fx:id="accountOpeningInput" layoutX="382.0" layoutY="273.0" prefHeight="95.0" prefWidth="261.0" promptText="Account Opening Date" />
-      <Button layoutX="615.0" layoutY="543.0" mnemonicParsing="false" onAction="#promptUserToEnterAllFields" prefHeight="47.0" prefWidth="110.0" text="Save" />
+      <Button layoutX="615.0" layoutY="543.0" mnemonicParsing="false" onAction="#save" prefHeight="47.0" prefWidth="110.0" text="Save" />
       <Button layoutX="481.0" layoutY="543.0" mnemonicParsing="false" onAction="#switchtoHomeScene" prefHeight="47.0" prefWidth="110.0" text="Cancel" />
    </children>
 </AnchorPane>

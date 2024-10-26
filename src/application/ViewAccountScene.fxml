@@ -5,14 +5,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SceneController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ViewAccountController">
    <children>
-      <Button layoutX="23.0" layoutY="698.0" mnemonicParsing="false" onAction="#switchtoHomeScene" prefHeight="50.0" prefWidth="108.0" text="Back" />
-      <TableView layoutX="95.0" layoutY="14.0" prefHeight="670.0" prefWidth="834.0">
+      <Button layoutX="23.0" layoutY="698.0" mnemonicParsing="false" onAction="#switchToHomeScene" prefHeight="50.0" prefWidth="108.0" text="Back" />
+      <TableView fx:id="accountTableView" layoutX="95.0" layoutY="14.0" prefHeight="670.0" prefWidth="834.0">
         <columns>
-          <TableColumn prefWidth="199.0" text="Account Name" />
-          <TableColumn prefWidth="434.0" text="Opening Date" />
-            <TableColumn prefWidth="200.0" text="Opening Balance" />
+          <TableColumn fx:id="nameCol" prefWidth="199.0" text="Account Name" />
+          <TableColumn fx:id="openingDateCol" prefWidth="434.0" text="Opening Date" />
+            <TableColumn fx:id="openingBalanceCol" prefWidth="200.0" text="Opening Balance" />
         </columns>
       </TableView>
    </children>
