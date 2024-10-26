@@ -35,7 +35,8 @@ public class ViewAccountController implements Initializable {
 	private TableColumn<Account, String> openingBalanceCol;
 	@FXML
 	private TableColumn<Account, String> openingDateCol;
-
+	
+	//initializes the table
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		ObservableList<Account> accountList = FXCollections.observableArrayList();
 		
@@ -47,12 +48,13 @@ public class ViewAccountController implements Initializable {
 		
 		accountTableView.setItems(accountList);
 		
+		//this makes it go in descending order by date
 		openingDateCol.setSortType(TableColumn.SortType.DESCENDING);
 		accountTableView.getSortOrder().add(openingDateCol);
 		accountTableView.sort();
 	}
 
-	// maybe try opencsv here
+	// reads all the accounts saved in the csv file and returns a list
 	public ObservableList<Account> loadAccountData() {
 
 		ObservableList<Account> accountList = FXCollections.observableArrayList();
@@ -98,6 +100,7 @@ public class ViewAccountController implements Initializable {
 		return accountList;
 	}
 	
+	//pretty self explanatory here
 	public void switchToHomeScene(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
