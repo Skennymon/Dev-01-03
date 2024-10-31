@@ -60,17 +60,6 @@ public class ViewAccountController implements Initializable {
 		ObservableList<Account> accountList = FXCollections.observableArrayList();
 		String filePath = "Accounts.csv";
 		
-		/*
-		try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-			while (reader.readLine() != null) {
-				String[] line = reader.readLine().split(",");
-				accountList.add(new Account(line[0], line[1], line[2]));
-				reader.close();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
-		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("Accounts.csv"));
 			String line;
@@ -87,16 +76,6 @@ public class ViewAccountController implements Initializable {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-
-		for (int i = 0; i < accountList.size(); i++) {
-			System.out.println(accountList.get(i).getAccountName());
-		}
-
-		System.out.println(accountList.size());
-		
-		
-		
 		return accountList;
 	}
 	

@@ -1,6 +1,7 @@
 package application;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -34,29 +35,19 @@ public class SceneController {
 	private Scene scene;
 	private Parent root;
 	final String CSV_LOCATION = "Accounts.csv";
-
-	@FXML
-	private TextField accountNameInput;
-	@FXML
-	private TextField accountOpeningBalanceInput;
-	@FXML
-	private DatePicker accountOpeningInput;
 	
-	public void switchtoHomeScene(ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-	}
-
 	public void switchToNewAccountScene(ActionEvent event) throws IOException {
-
-		root = FXMLLoader.load(getClass().getResource("NewAccountScene.fxml"));
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("NewAccountScene.fxml"));
+		root = loader.load();
+		
+		NewAccountController newAccountController = loader.getController();
+		
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+		
 	}
 
 	public void switchToViewAccountScene(ActionEvent event) throws IOException {
@@ -66,52 +57,24 @@ public class SceneController {
 
 		ViewAccountController viewAccountController = loader.getController();
 
-		// start back here homie
-
-		// Parent root =
-		// FXMLLoader.load(getClass().getResource("ViewAccountScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
-
-	public void save(ActionEvent event) throws IOException {
-
-		// if the user hasn't entered all the required fields, it gives an alert to the
-		// user that they need to do that
-		if (accountNameInput.getText().isEmpty() || accountOpeningBalanceInput.getText().isEmpty()
-				|| accountOpeningInput.getValue() == null) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Alert!");
-			alert.setContentText("Please enter in all fields");
-			Optional<ButtonType> result = alert.showAndWait();
-		} else {
-
-			// saves account info to a new file
-			saveAccountInfo(accountNameInput.getText(), accountOpeningInput.getValue(),
-					accountOpeningBalanceInput.getText());
-
-			Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
-			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		}
-
+	
+	public void switchToNewTransactionTypeScene(ActionEvent event) throws IOException {
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("NewTransactionTypeScene.fxml"));
+		root = loader.load();
+		
+		DefineNewTransactionTypeController transactionTypeController = loader.getController();
+		
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+		
 	}
-
-	// saves whatever the user inputted into a csv file located in the root folder
-	// called "Accounts.csv"
-	public void saveAccountInfo(String name, LocalDate date, String balance) {
-		try (FileWriter writer = new FileWriter("Accounts.csv", true)) {
-			writer.write(name + "," + date.toString() + "," + balance + "\n");
-			writer.flush();
-			System.out.println("Data Saved to Accounts.csv");
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
+	
 }

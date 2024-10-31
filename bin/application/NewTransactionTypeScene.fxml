@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DefineNewTransactionTypeController">
+   <children>
+      <Text layoutX="278.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Define New Transaction Type" wrappingWidth="467.517578125">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <TextField fx:id="transactionTypeInput" layoutX="302.0" layoutY="269.0" prefHeight="121.0" prefWidth="420.0" promptText="Define New Transaction Type Here" />
+      <Button layoutX="643.0" layoutY="411.0" mnemonicParsing="false" onAction="#save" prefHeight="48.0" prefWidth="79.0" text="Save" />
+      <Button layoutX="543.0" layoutY="411.0" mnemonicParsing="false" onAction="#switchToHomeScene" prefHeight="48.0" prefWidth="79.0" text="Back" />
+   </children>
+</AnchorPane>

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewAccountController">
    <children>
       <Label layoutX="347.0" layoutY="28.0" prefHeight="95.0" prefWidth="332.0" text="Add New Account">
          <font>
@@ -18,6 +18,6 @@
       <TextField fx:id="accountOpeningBalanceInput" layoutX="382.0" layoutY="384.0" prefHeight="112.0" prefWidth="261.0" promptText="Opening Account Balance" />
       <DatePicker fx:id="accountOpeningInput" layoutX="382.0" layoutY="273.0" prefHeight="95.0" prefWidth="261.0" promptText="Account Opening Date" />
       <Button layoutX="615.0" layoutY="543.0" mnemonicParsing="false" onAction="#save" prefHeight="47.0" prefWidth="110.0" text="Save" />
-      <Button layoutX="481.0" layoutY="543.0" mnemonicParsing="false" onAction="#switchtoHomeScene" prefHeight="47.0" prefWidth="110.0" text="Cancel" />
+      <Button layoutX="481.0" layoutY="543.0" mnemonicParsing="false" onAction="#switchToHomeScene" prefHeight="47.0" prefWidth="110.0" text="Cancel" />
    </children>
 </AnchorPane>
