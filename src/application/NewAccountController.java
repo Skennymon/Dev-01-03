@@ -44,8 +44,6 @@ public class NewAccountController implements Initializable {
 		// if the user hasn't entered all the required fields, it gives an alert to the
 		// user that they need to do that
 		File file = new File("Accounts.csv");
-		boolean loopUntilValid = false;
-
 
 		if (accountNameInput.getText().isEmpty() || accountOpeningBalanceInput.getText().isEmpty() || accountOpeningInput.getValue() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
