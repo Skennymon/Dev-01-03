@@ -23,7 +23,7 @@
       <TextField fx:id="paymentAmountInput" layoutX="415.0" layoutY="494.0" prefHeight="48.0" prefWidth="195.0" promptText="Payment Amount" />
       <Text layoutX="415.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" />
       <Text layoutX="415.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type" wrappingWidth="100.13671875" />
-      <Button layoutX="548.0" layoutY="666.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="71.0" text="Save" />
-      <Button layoutX="459.0" layoutY="666.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="71.0" text="Back" />
+      <Button layoutX="548.0" layoutY="666.0" mnemonicParsing="false" onAction="#save" prefHeight="40.0" prefWidth="71.0" text="Save" />
+      <Button layoutX="459.0" layoutY="666.0" mnemonicParsing="false" onAction="#switchToHomeScene" prefHeight="40.0" prefWidth="71.0" text="Back" />
    </children>
 </AnchorPane>
