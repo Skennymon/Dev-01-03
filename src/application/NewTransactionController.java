@@ -112,15 +112,21 @@ public class NewTransactionController implements Initializable {
 	public void save(ActionEvent event) throws IOException {
 		
 		//check if user entered all fields
-		if(transactionDescriptionInput.getText().isEmpty() || paymentAmountInput.getText().isEmpty() || depositAmountInput.getText().isEmpty() || accountDropdownInput.getItems().isEmpty() || transactionTypeDropdownInput.getItems().isEmpty()) {
+		if(transactionDescriptionInput.getText().isEmpty() || accountDropdownInput.getItems().isEmpty() || transactionTypeDropdownInput.getItems().isEmpty()) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Alert!");
 			alert.setContentText("Please enter in all fields");
 			Optional<ButtonType> result = alert.showAndWait();
 		}
-		else {
+		else if(paymentAmountInput.getText().isEmpty() && depositAmountInput.getText().isEmpty()) {
 			
-			//check if the user entered valid data
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Alert!");
+			alert.setContentText("Please enter valid payment amount or deposit amount or both!");
+			Optional<ButtonType> result = alert.showAndWait();
+			
+		}
+		else if(!depositAmountInput.getText().isEmpty() && !paymentAmountInput.getText().isEmpty()) {
 			try {
 				Double.parseDouble(paymentAmountInput.getText());
 			}
@@ -131,7 +137,42 @@ public class NewTransactionController implements Initializable {
 				Optional<ButtonType> result = alert.showAndWait();
 				return;
 			}
-			
+			try {
+				Double.parseDouble(depositAmountInput.getText());
+			}
+			catch(Exception e) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Alert!");
+				alert.setContentText("Please enter a valid number deposit amount!");
+				Optional<ButtonType> result = alert.showAndWait();
+				return;
+			}
+			saveTransactionInfo(accountDropdownInput.getValue(), transactionTypeDropdownInput.getValue(), transactionDateInput.getValue(), transactionDescriptionInput.getText(), paymentAmountInput.getText(), depositAmountInput.getText());
+			Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
+			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
+		else if (depositAmountInput.getText().isEmpty() && !paymentAmountInput.getText().isEmpty()) {
+			try {
+				Double.parseDouble(paymentAmountInput.getText());
+			}
+			catch (Exception e) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Alert!");
+				alert.setContentText("Please enter a valid number payment amount!");
+				Optional<ButtonType> result = alert.showAndWait();
+				return;
+			}
+			saveTransactionInfo(accountDropdownInput.getValue(), transactionTypeDropdownInput.getValue(), transactionDateInput.getValue(), transactionDescriptionInput.getText(), paymentAmountInput.getText(), depositAmountInput.getText());
+			Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
+			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
+		else {
 			try {
 				Double.parseDouble(depositAmountInput.getText());
 			}
