@@ -45,31 +45,34 @@ public class NewAccountController implements Initializable {
 		// user that they need to do that
 		File file = new File("Accounts.csv");
 		
-		//try catch block checks if user entered a valid number for opening balance
-		try {
-			Double.parseDouble(accountOpeningBalanceInput.getText());
-		}
-		catch(Exception e) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Alert!");
-			alert.setContentText("Please enter a valid number for opening balance!");
-			Optional<ButtonType> result = alert.showAndWait();
-			return;
-		}
-
 		if (accountNameInput.getText().isEmpty() || accountOpeningBalanceInput.getText().isEmpty() || accountOpeningInput.getValue() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Alert!");
 			alert.setContentText("Please enter in all fields");
 			Optional<ButtonType> result = alert.showAndWait();
+			return;
 		}
 		else if(file.exists() && checkForDuplicates()) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Alert!");
 			alert.setContentText("An account with that name already exists!");
 			Optional<ButtonType> result = alert.showAndWait();
+			return;
 		}
 		else {
+			
+			//try catch block checks if user entered a valid number for opening balance
+			try {
+				Double.parseDouble(accountOpeningBalanceInput.getText());
+			}
+			catch(Exception e) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Alert!");
+				alert.setContentText("Please enter a valid number for opening balance!");
+				Optional<ButtonType> result = alert.showAndWait();
+				return;
+			}
+			
 			saveAccountInfo(accountNameInput.getText(), accountOpeningInput.getValue(),
 					accountOpeningBalanceInput.getText());
 

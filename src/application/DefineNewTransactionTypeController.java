@@ -38,12 +38,14 @@ public class DefineNewTransactionTypeController implements Initializable {
 		
 		File file = new File("TransactionType.csv");
 		
+		//checks if the user entered anything and if they did, alert them that they should add something
 		if(transactionTypeInput.getText().isEmpty()) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Alert!");
 			alert.setContentText("Please enter the Transaction Type!");
 			Optional<ButtonType> result = alert.showAndWait();
 		}
+		//checks for duplicates
 		else if(file.exists() && checkForDuplicates()) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Alert!");

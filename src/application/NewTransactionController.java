@@ -111,29 +111,6 @@ public class NewTransactionController implements Initializable {
 	//saves to a new Transactions.csv file
 	public void save(ActionEvent event) throws IOException {
 		
-		//check if the user entered valid data
-		try {
-			Double.parseDouble(paymentAmountInput.getText());
-		}
-		catch (Exception e) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Alert!");
-			alert.setContentText("Please enter a valid number payment amount!");
-			Optional<ButtonType> result = alert.showAndWait();
-			return;
-		}
-		
-		try {
-			Double.parseDouble(depositAmountInput.getText());
-		}
-		catch(Exception e) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Alert!");
-			alert.setContentText("Please enter a valid number deposit amount!");
-			Optional<ButtonType> result = alert.showAndWait();
-			return;
-		}
-		
 		//check if user entered all fields
 		if(transactionDescriptionInput.getText().isEmpty() || paymentAmountInput.getText().isEmpty() || depositAmountInput.getText().isEmpty() || accountDropdownInput.getItems().isEmpty() || transactionTypeDropdownInput.getItems().isEmpty()) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -142,6 +119,30 @@ public class NewTransactionController implements Initializable {
 			Optional<ButtonType> result = alert.showAndWait();
 		}
 		else {
+			
+			//check if the user entered valid data
+			try {
+				Double.parseDouble(paymentAmountInput.getText());
+			}
+			catch (Exception e) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Alert!");
+				alert.setContentText("Please enter a valid number payment amount!");
+				Optional<ButtonType> result = alert.showAndWait();
+				return;
+			}
+			
+			try {
+				Double.parseDouble(depositAmountInput.getText());
+			}
+			catch(Exception e) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Alert!");
+				alert.setContentText("Please enter a valid number deposit amount!");
+				Optional<ButtonType> result = alert.showAndWait();
+				return;
+			}
+			
 			saveTransactionInfo(accountDropdownInput.getValue(), transactionTypeDropdownInput.getValue(), transactionDateInput.getValue(), transactionDescriptionInput.getText(), paymentAmountInput.getText(), depositAmountInput.getText());
 			Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
