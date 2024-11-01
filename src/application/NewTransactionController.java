@@ -112,7 +112,7 @@ public class NewTransactionController implements Initializable {
 	public void save(ActionEvent event) throws IOException {
 		
 		//check if user entered all fields
-		if(transactionDescriptionInput.getText().isEmpty() || accountDropdownInput.getItems().isEmpty() || transactionTypeDropdownInput.getItems().isEmpty()) {
+		if(transactionDescriptionInput.getText().isEmpty() || accountDropdownInput.getItems().isEmpty() || transactionTypeDropdownInput.getItems().isEmpty() || transactionDateInput.getValue() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Alert!");
 			alert.setContentText("Please enter in all fields");
