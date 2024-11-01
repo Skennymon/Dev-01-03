@@ -12,6 +12,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
+			//sets up and initializes home page when the user launches the app
 			Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);

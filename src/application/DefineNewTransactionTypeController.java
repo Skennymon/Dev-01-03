@@ -60,7 +60,7 @@ public class DefineNewTransactionTypeController implements Initializable {
 			stage.setScene(scene);
 			stage.show();
 		}
-		
+		//we good
 	}
 	
 	public void saveTransactionTypeInfo(String transactionType) {
