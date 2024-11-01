@@ -44,6 +44,18 @@ public class NewAccountController implements Initializable {
 		// if the user hasn't entered all the required fields, it gives an alert to the
 		// user that they need to do that
 		File file = new File("Accounts.csv");
+		
+		//try catch block checks if user entered a valid number for opening balance
+		try {
+			Double.parseDouble(accountOpeningBalanceInput.getText());
+		}
+		catch(Exception e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Alert!");
+			alert.setContentText("Please enter a valid number for opening balance!");
+			Optional<ButtonType> result = alert.showAndWait();
+			return;
+		}
 
 		if (accountNameInput.getText().isEmpty() || accountOpeningBalanceInput.getText().isEmpty() || accountOpeningInput.getValue() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -88,7 +100,7 @@ public class NewAccountController implements Initializable {
 		String line;
 		BufferedReader br = new BufferedReader(new FileReader("Accounts.csv"));
 		while((line = br.readLine()) != null) {
-			if(line.contains(accountNameInput.getText())) {
+			if(line.toLowerCase().contains(accountNameInput.getText().toLowerCase())) {
 				return true;
 			}
 		}

@@ -77,7 +77,7 @@ public class DefineNewTransactionTypeController implements Initializable {
 		String line;
 		BufferedReader br = new BufferedReader(new FileReader("TransactionType.csv"));
 		while((line = br.readLine()) != null) {
-			if(line.contains(transactionTypeInput.getText())) {
+			if(line.toLowerCase().contains(transactionTypeInput.getText().toLowerCase())) {
 				return true;
 			}
 		}

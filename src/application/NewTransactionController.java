@@ -47,9 +47,17 @@ public class NewTransactionController implements Initializable {
 		try {
 			populateAccountMenu("Accounts.csv");
 			accountDropdownInput.setValue(accountDropdownInput.getItems().get(0));
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Accounts.csv not found!");
+		}
+		catch (IndexOutOfBoundsException e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Alert!");
+			alert.setContentText("Please define an account first!");
+			Optional<ButtonType> result = alert.showAndWait();
+			
 		}
 		
 		try {
@@ -58,6 +66,12 @@ public class NewTransactionController implements Initializable {
 		}
 		catch (IOException e) {
 			System.out.println("TransactionType.csv not found!");
+		}
+		catch(IndexOutOfBoundsException e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Alert!");
+			alert.setContentText("Please define a transactiontype first!");
+			Optional<ButtonType> result = alert.showAndWait();
 		}
 		
 	}
@@ -97,8 +111,31 @@ public class NewTransactionController implements Initializable {
 	//saves to a new Transactions.csv file
 	public void save(ActionEvent event) throws IOException {
 		
+		//check if the user entered valid data
+		try {
+			Double.parseDouble(paymentAmountInput.getText());
+		}
+		catch (Exception e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Alert!");
+			alert.setContentText("Please enter a valid number payment amount!");
+			Optional<ButtonType> result = alert.showAndWait();
+			return;
+		}
+		
+		try {
+			Double.parseDouble(depositAmountInput.getText());
+		}
+		catch(Exception e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Alert!");
+			alert.setContentText("Please enter a valid number deposit amount!");
+			Optional<ButtonType> result = alert.showAndWait();
+			return;
+		}
+		
 		//check if user entered all fields
-		if(transactionDescriptionInput.getText().isEmpty() || paymentAmountInput.getText().isEmpty() || depositAmountInput.getText().isEmpty()) {
+		if(transactionDescriptionInput.getText().isEmpty() || paymentAmountInput.getText().isEmpty() || depositAmountInput.getText().isEmpty() || accountDropdownInput.getItems().isEmpty() || transactionTypeDropdownInput.getItems().isEmpty()) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Alert!");
 			alert.setContentText("Please enter in all fields");
