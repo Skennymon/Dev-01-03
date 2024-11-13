@@ -17,6 +17,6 @@
             <TableColumn fx:id="depositAmountCol" prefWidth="181.0" text="Deposit Amount" />
         </columns>
       </TableView>
-      <Button layoutX="47.0" layoutY="679.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Back" />
+      <Button layoutX="47.0" layoutY="679.0" mnemonicParsing="false" onAction="#switchToHomeScene" prefHeight="25.0" prefWidth="68.0" text="Back" />
    </children>
 </Pane>
