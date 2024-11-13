@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ViewTransactionController">
+   <children>
+      <TableView fx:id="transactionTable" layoutX="75.0" layoutY="62.0" prefHeight="584.0" prefWidth="874.0">
+        <columns>
+          <TableColumn fx:id="accountCol" prefWidth="104.0" text="Account" />
+          <TableColumn fx:id="transactionTypeCol" prefWidth="118.0" text="Transaction Type" />
+            <TableColumn fx:id="transactionDateCol" prefWidth="130.0" text="Transaction Date" />
+            <TableColumn fx:id="transactionDescriptionCol" prefWidth="174.0" text="Transaction Description" />
+            <TableColumn fx:id="paymentAmountCol" prefWidth="166.0" text="Payment Amount" />
+            <TableColumn fx:id="depositAmountCol" prefWidth="181.0" text="Deposit Amount" />
+        </columns>
+      </TableView>
+      <Button layoutX="47.0" layoutY="679.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Back" />
+   </children>
+</Pane>
