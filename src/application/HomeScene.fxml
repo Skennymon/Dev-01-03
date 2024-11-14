@@ -14,9 +14,10 @@
       </Label>
       <Button fx:id="newAccButton" layoutX="447.0" layoutY="152.0" mnemonicParsing="false" onAction="#switchToNewAccountScene" prefHeight="51.0" prefWidth="130.0" text="Add New Account" />
       <Button fx:id="addTransButton" layoutX="409.0" layoutY="326.0" mnemonicParsing="false" onAction="#switchToNewTransactionTypeScene" prefHeight="51.0" prefWidth="204.0" text="Define New Transaction Type" />
-      <Button fx:id="schTransButton" layoutX="432.0" layoutY="577.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="158.0" text="Schedule New Transaction" />
+      <Button fx:id="schTransButton" layoutX="432.0" layoutY="577.0" mnemonicParsing="false" onAction="#switchToNewScheduleTransactionScene" prefHeight="51.0" prefWidth="158.0" text="Schedule New Transaction" />
       <Button fx:id="viewAccButton" layoutX="447.0" layoutY="243.0" mnemonicParsing="false" onAction="#switchToViewAccountScene" prefHeight="51.0" prefWidth="130.0" text="View Accounts" />
       <Button fx:id="viewTransButton" layoutX="446.0" layoutY="491.0" mnemonicParsing="false" onAction="#switchToViewTransactionScene" prefHeight="51.0" prefWidth="130.0" text="View Transactions" />
       <Button layoutX="447.0" layoutY="410.0" mnemonicParsing="false" onAction="#switchToNewTransactionScene" prefHeight="51.0" prefWidth="130.0" text="Add New Transaction" />
+      <Button layoutX="424.0" layoutY="664.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="177.0" text="View Scheduled Transactions" />
    </children>
 </AnchorPane>

@@ -18,6 +18,12 @@ public class Transaction {
 		this.setDepositAmount(depositAmount);
 		
 	}
+	
+	public Transaction(String account, String transactionType, String paymentAmount) {
+		this.account = account;
+		this.transactionType = transactionType;
+		this.paymentAmount = paymentAmount;
+	}
 
 	public String getAccount() {
 		return account;

@@ -24,7 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class ViewTransactionController implements Initializable {
+public class ViewTransactionController implements Initializable, DataAccessLayer {
 	
 	@FXML
 	private TableView<Transaction> transactionTable;
@@ -63,6 +63,7 @@ public class ViewTransactionController implements Initializable {
 		transactionTable.sort();
 	}
 	
+	/*
 	public ObservableList<Transaction> loadTransactionData() {
 		ObservableList<Transaction> transactionList = FXCollections.observableArrayList();
 		String filePath = "Accounts.csv";
@@ -87,7 +88,7 @@ public class ViewTransactionController implements Initializable {
 			e.printStackTrace();
 		}
 		return transactionList;
-	}
+	}*/
 	
 	public void switchToHomeScene(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));

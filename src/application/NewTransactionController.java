@@ -24,11 +24,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class NewTransactionController implements Initializable {
-	
+public class NewTransactionController implements Initializable, DataAccessLayer {
+
 	private Stage stage;
 	private Scene scene;
-	
+
 	@FXML
 	private ChoiceBox<String> accountDropdownInput;
 	@FXML
@@ -41,7 +41,7 @@ public class NewTransactionController implements Initializable {
 	private TextField paymentAmountInput;
 	@FXML
 	private TextField depositAmountInput;
-	
+
 	public void initialize(URL url, ResourceBundle bundle) {
 		transactionDateInput.setValue(LocalDate.now());
 		try {
@@ -57,9 +57,9 @@ public class NewTransactionController implements Initializable {
 			alert.setTitle("Alert!");
 			alert.setContentText("Please define an account first!");
 			Optional<ButtonType> result = alert.showAndWait();
-			
+
 		}
-		
+
 		try {
 			populateTransactionMenu("TransactionType.csv");
 			transactionTypeDropdownInput.setValue(transactionTypeDropdownInput.getItems().get(0));
@@ -73,9 +73,9 @@ public class NewTransactionController implements Initializable {
 			alert.setContentText("Please define a transactiontype first!");
 			Optional<ButtonType> result = alert.showAndWait();
 		}
-		
+
 	}
-	
+
 	//grabs the account.csv file and populates the accountmenu with the accounts
 	public void populateAccountMenu(String filepath) throws IOException {
 		File file = new File(filepath);
@@ -91,12 +91,12 @@ public class NewTransactionController implements Initializable {
 			return;
 		}
 	}
-	
+
 	//populate the transaction menu from the TransactionType.csv file
 	public void populateTransactionMenu(String filepath) throws IOException {
 		File file = new File(filepath);
 		if(file.exists()) {
-			//populate table
+			//populate table						
 			BufferedReader br = new BufferedReader(new FileReader("TransactionType.csv"));
 			String line;
 			while((line = br.readLine()) != null) {
@@ -107,10 +107,10 @@ public class NewTransactionController implements Initializable {
 			return;
 		}
 	}
-	
+
 	//saves to a new Transactions.csv file
 	public void save(ActionEvent event) throws IOException {
-		
+
 		//check if user entered all fields
 		if(transactionDescriptionInput.getText().isEmpty() || accountDropdownInput.getItems().isEmpty() || transactionTypeDropdownInput.getItems().isEmpty() || transactionDateInput.getValue() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -119,12 +119,12 @@ public class NewTransactionController implements Initializable {
 			Optional<ButtonType> result = alert.showAndWait();
 		}
 		else if(paymentAmountInput.getText().isEmpty() && depositAmountInput.getText().isEmpty()) {
-			
+
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Alert!");
 			alert.setContentText("Please enter valid payment amount or deposit amount or both!");
 			Optional<ButtonType> result = alert.showAndWait();
-			
+
 		}
 		else if(!depositAmountInput.getText().isEmpty() && !paymentAmountInput.getText().isEmpty()) {
 			try {
@@ -183,7 +183,7 @@ public class NewTransactionController implements Initializable {
 				Optional<ButtonType> result = alert.showAndWait();
 				return;
 			}
-			
+
 			saveTransactionInfo(accountDropdownInput.getValue(), transactionTypeDropdownInput.getValue(), transactionDateInput.getValue(), transactionDescriptionInput.getText(), paymentAmountInput.getText(), depositAmountInput.getText());
 			Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -191,9 +191,9 @@ public class NewTransactionController implements Initializable {
 			stage.setScene(scene);
 			stage.show();
 		}
-		
+
 	}
-	
+
 	public void switchToHomeScene(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -201,16 +201,7 @@ public class NewTransactionController implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
-	public void saveTransactionInfo(String account, String transactionType, LocalDate transactionDate, String transactionDescription, String paymentAmount, String depositAmount) {
-		try (FileWriter writer = new FileWriter("Transactions.csv", true)) {
-			writer.write(account + "," + transactionType + "," + transactionDate + "," + transactionDescription + "," + paymentAmount + "," + depositAmount + "\n");
-			writer.flush();
-			System.out.println("Data Saved to Transactions.csv");
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
+
+
+
 }

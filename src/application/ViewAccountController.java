@@ -24,7 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class ViewAccountController implements Initializable {
+public class ViewAccountController implements Initializable, DataAccessLayer {
 	
 	private Parent root;
 	private Scene scene;
@@ -58,6 +58,7 @@ public class ViewAccountController implements Initializable {
 	}
 
 	// reads all the accounts saved in the csv file and returns a list
+	/*
 	public ObservableList<Account> loadAccountData() {
 
 		ObservableList<Account> accountList = FXCollections.observableArrayList();
@@ -83,7 +84,7 @@ public class ViewAccountController implements Initializable {
 			e.printStackTrace();
 		}
 		return accountList;
-	}
+	}*/
 	
 	//pretty self explanatory here
 	public void switchToHomeScene(ActionEvent event) throws IOException {

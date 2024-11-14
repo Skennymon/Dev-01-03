@@ -22,7 +22,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class DefineNewTransactionTypeController implements Initializable {
+public class DefineNewTransactionTypeController implements Initializable, DataAccessLayer {
 	
 	private Stage stage;
 	private Scene scene;
@@ -46,7 +46,7 @@ public class DefineNewTransactionTypeController implements Initializable {
 			Optional<ButtonType> result = alert.showAndWait();
 		}
 		//checks for duplicates
-		else if(file.exists() && checkForDuplicates()) {
+		else if(file.exists() && checkForDuplicates("TransactionType.csv", transactionTypeInput.getText())) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Alert!");
 			alert.setContentText("That transaction type already exists!");
@@ -63,29 +63,6 @@ public class DefineNewTransactionTypeController implements Initializable {
 		//we good
 	}
 	
-	public void saveTransactionTypeInfo(String transactionType) {
-		try (FileWriter writer = new FileWriter("TransactionType.csv", true)) {
-			writer.write(transactionType + "\n");
-			writer.flush();
-			System.out.println("Data Saved to TransactionType.csv");
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public boolean checkForDuplicates() throws IOException {
-		
-		String line;
-		BufferedReader br = new BufferedReader(new FileReader("TransactionType.csv"));
-		while((line = br.readLine()) != null) {
-			if(line.toLowerCase().contains(transactionTypeInput.getText().toLowerCase())) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
 	
 	public void switchToHomeScene(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));

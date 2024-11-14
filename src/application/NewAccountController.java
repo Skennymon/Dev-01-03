@@ -23,7 +23,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class NewAccountController implements Initializable {
+public class NewAccountController implements Initializable, DataAccessLayer {
 	
 	private Stage stage;
 	private Scene scene;
@@ -52,7 +52,7 @@ public class NewAccountController implements Initializable {
 			Optional<ButtonType> result = alert.showAndWait();
 			return;
 		}
-		else if(file.exists() && checkForDuplicates()) {
+		else if(file.exists() && checkForDuplicates("Accounts.csv", accountNameInput.getText())) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Alert!");
 			alert.setContentText("An account with that name already exists!");
@@ -84,32 +84,6 @@ public class NewAccountController implements Initializable {
 
 		}
 		
-	}
-	
-	public void saveAccountInfo(String name, LocalDate date, String balance) {
-		try (FileWriter writer = new FileWriter("Accounts.csv", true)) {
-			writer.write(name + "," + date.toString() + "," + balance + "\n");
-			writer.flush();
-			System.out.println("Data Saved to Accounts.csv");
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public boolean checkForDuplicates() throws IOException {
-		File file = new File("Accounts.csv");
-
-		String line;
-		BufferedReader br = new BufferedReader(new FileReader("Accounts.csv"));
-		while((line = br.readLine()) != null) {
-			if(line.toLowerCase().contains(accountNameInput.getText().toLowerCase())) {
-				return true;
-			}
-		}
-
-
-		return false;
 	}
 	
 	
