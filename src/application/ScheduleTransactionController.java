@@ -113,6 +113,16 @@ public class ScheduleTransactionController implements Initializable, DataAccessL
 			Optional<ButtonType> result = alert.showAndWait();
 			return;
 		}
+		try {
+			Integer.parseInt(dueDateInput.getText());
+		}
+		catch(Exception e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Alert!");
+			alert.setContentText("Please enter a valid integer for due date!");
+			Optional<ButtonType> result = alert.showAndWait();
+			return;
+		}
 		
 		File file = new File("ScheduledTransactions.csv");
 		
