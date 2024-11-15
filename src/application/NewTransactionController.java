@@ -111,7 +111,7 @@ public class NewTransactionController implements Initializable, DataAccessLayer 
 	//saves to a new Transactions.csv file
 	public void save(ActionEvent event) throws IOException {
 
-		//check if user entered all fields
+		//check if user entered all fields, if checks if either deposit or payment or both are filled in correctly and saves it if its good
 		if(transactionDescriptionInput.getText().isEmpty() || accountDropdownInput.getItems().isEmpty() || transactionTypeDropdownInput.getItems().isEmpty() || transactionDateInput.getValue() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Alert!");

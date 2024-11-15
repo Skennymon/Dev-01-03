@@ -48,6 +48,7 @@ public class ViewTransactionController implements Initializable, DataAccessLayer
 	public void initialize(URL url, ResourceBundle bundle) {
 		ObservableList<Transaction> accountList = FXCollections.observableArrayList();
 		
+		//sets each column to its respective attribute
 		accountCol.setCellValueFactory(new PropertyValueFactory<Transaction, String>("account"));
 		transactionTypeCol.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionType"));
 		transactionDateCol.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionDate"));
@@ -58,6 +59,7 @@ public class ViewTransactionController implements Initializable, DataAccessLayer
 		accountList = loadTransactionData();
 		transactionTable.setItems(accountList);
 		
+		//sets the table to descending based on transaction date
 		transactionDateCol.setSortType(TableColumn.SortType.DESCENDING);
 		transactionTable.getSortOrder().add(transactionDateCol);
 		transactionTable.sort();

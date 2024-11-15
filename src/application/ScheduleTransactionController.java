@@ -94,6 +94,7 @@ public class ScheduleTransactionController implements Initializable, DataAccessL
 		}
 	}
 	
+	//this methods saves the user input to ScheduledTransaction.csv
 	public void save(ActionEvent event) throws IOException {
 		if(scheduleNameInput.getText().isEmpty() || dueDateInput.getText().isEmpty() || paymentAmountInput.getText().isEmpty() || accountInput.getValue() == null || transactionTypeInput.getValue() == null || frequencyInput.getValue() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);

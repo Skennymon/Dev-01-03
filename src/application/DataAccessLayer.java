@@ -65,7 +65,8 @@ public interface DataAccessLayer {
 		}
 		return accountList;
 	}
-
+	
+	//returns a list of transaction objects
 	default ObservableList<Transaction> loadTransactionData() {
 		ObservableList<Transaction> transactionList = FXCollections.observableArrayList();
 		String filePath = "Accounts.csv";
@@ -130,6 +131,7 @@ public interface DataAccessLayer {
 		return false;
 	}
 	
+	//returns a list of ScheduleTransactionBean objects 
 	default ObservableList<ScheduleTransactionBean> loadScheduledTransactionsInfo() {
 		ObservableList<ScheduleTransactionBean> scheduledTransactionList = FXCollections.observableArrayList();
 
