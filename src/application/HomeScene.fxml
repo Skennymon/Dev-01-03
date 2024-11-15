@@ -18,6 +18,6 @@
       <Button fx:id="viewAccButton" layoutX="447.0" layoutY="243.0" mnemonicParsing="false" onAction="#switchToViewAccountScene" prefHeight="51.0" prefWidth="130.0" text="View Accounts" />
       <Button fx:id="viewTransButton" layoutX="446.0" layoutY="491.0" mnemonicParsing="false" onAction="#switchToViewTransactionScene" prefHeight="51.0" prefWidth="130.0" text="View Transactions" />
       <Button layoutX="447.0" layoutY="410.0" mnemonicParsing="false" onAction="#switchToNewTransactionScene" prefHeight="51.0" prefWidth="130.0" text="Add New Transaction" />
-      <Button layoutX="424.0" layoutY="664.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="177.0" text="View Scheduled Transactions" />
+      <Button layoutX="424.0" layoutY="664.0" mnemonicParsing="false" onAction="#switchToViewScheduleTransactionScene" prefHeight="51.0" prefWidth="177.0" text="View Scheduled Transactions" />
    </children>
 </AnchorPane>

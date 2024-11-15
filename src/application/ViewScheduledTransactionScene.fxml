@@ -5,19 +5,18 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ViewScheduledTransactionController">
    <children>
-      <TableView layoutX="117.0" layoutY="62.0" prefHeight="586.0" prefWidth="791.0">
+      <TableView fx:id="scheduledTransactionTable" layoutX="117.0" layoutY="62.0" prefHeight="586.0" prefWidth="791.0">
         <columns>
-          <TableColumn prefWidth="108.0" text="Schedule Name" />
-          <TableColumn prefWidth="97.0" text="Account" />
-            <TableColumn prefWidth="128.0" text="Transaction Type" />
-            <TableColumn prefWidth="110.0" text="Frequency" />
-            <TableColumn prefWidth="150.0" text="Due Date" />
-            <TableColumn prefWidth="197.0" text="Payment Amount" />
+          <TableColumn fx:id="scheduleNameCol" prefWidth="108.0" text="Schedule Name" />
+          <TableColumn fx:id="accountCol" prefWidth="97.0" text="Account" />
+            <TableColumn fx:id="transactionTypeCol" prefWidth="139.0" text="Transaction Type" />
+            <TableColumn fx:id="frequencyCol" prefWidth="120.0" text="Frequency" />
+            <TableColumn fx:id="dueDateCol" prefWidth="140.0" text="Due Date" />
+            <TableColumn fx:id="paymentAmountCol" prefWidth="186.0" text="Payment Amount" />
         </columns>
       </TableView>
-      <Button layoutX="65.0" layoutY="683.0" mnemonicParsing="false" text="Back" />
+      <Button layoutX="65.0" layoutY="683.0" mnemonicParsing="false" onAction="#switchToHomeScene" text="Back" />
    </children>
 </Pane>

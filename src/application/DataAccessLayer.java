@@ -130,5 +130,31 @@ public interface DataAccessLayer {
 		return false;
 	}
 	
+	default ObservableList<ScheduleTransactionBean> loadScheduledTransactionsInfo() {
+		ObservableList<ScheduleTransactionBean> scheduledTransactionList = FXCollections.observableArrayList();
+
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("ScheduledTransactions.csv"));
+			String line;
+			while((line = br.readLine()) != null) {
+				String[] transaction = line.split(",");
+				scheduledTransactionList.add(new ScheduleTransactionBean(transaction[0], transaction[1], transaction[2], transaction[3], transaction[4], transaction[5]));
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Alert!");
+			alert.setContentText("Please add some transactions!");
+			Optional<ButtonType> result = alert.showAndWait();
+
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		return scheduledTransactionList;
+		
+	}
+	
 
 }

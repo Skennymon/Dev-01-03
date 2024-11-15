@@ -63,33 +63,6 @@ public class ViewTransactionController implements Initializable, DataAccessLayer
 		transactionTable.sort();
 	}
 	
-	/*
-	public ObservableList<Transaction> loadTransactionData() {
-		ObservableList<Transaction> transactionList = FXCollections.observableArrayList();
-		String filePath = "Accounts.csv";
-		
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("Transactions.csv"));
-			String line;
-			while((line = br.readLine()) != null) {
-				String[] transaction = line.split(",");
-				transactionList.add(new Transaction(transaction[0], transaction[1], transaction[2], transaction[3], transaction[4], transaction[5]));
-			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Alert!");
-			alert.setContentText("Please add some transactions!");
-			Optional<ButtonType> result = alert.showAndWait();
-			
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		return transactionList;
-	}*/
-	
 	public void switchToHomeScene(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

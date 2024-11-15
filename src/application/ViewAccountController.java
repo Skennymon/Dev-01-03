@@ -57,34 +57,6 @@ public class ViewAccountController implements Initializable, DataAccessLayer {
 		accountTableView.sort();
 	}
 
-	// reads all the accounts saved in the csv file and returns a list
-	/*
-	public ObservableList<Account> loadAccountData() {
-
-		ObservableList<Account> accountList = FXCollections.observableArrayList();
-		String filePath = "Accounts.csv";
-		
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("Accounts.csv"));
-			String line;
-			while((line = br.readLine()) != null) {
-				String[] account = line.split(",");
-				accountList.add(new Account(account[0], account[1], account[2]));
-			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Alert!");
-			alert.setContentText("Please add some accounts!");
-			Optional<ButtonType> result = alert.showAndWait();
-			
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		return accountList;
-	}*/
 	
 	//pretty self explanatory here
 	public void switchToHomeScene(ActionEvent event) throws IOException {
