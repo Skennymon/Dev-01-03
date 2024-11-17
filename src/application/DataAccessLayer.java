@@ -29,7 +29,7 @@ public interface DataAccessLayer {
 
 	default void saveTransactionInfo(String account, String transactionType, LocalDate transactionDate, String transactionDescription, String paymentAmount, String depositAmount) {
 		try (FileWriter writer = new FileWriter("Transactions.csv", true)) {
-			writer.write(account + "," + transactionType + "," + transactionDate + "," + transactionDescription + "," + paymentAmount + "," + depositAmount + "\n");
+			writer.write(account + "," + transactionType + "," + transactionDate + "," + transactionDescription + "," + paymentAmount + "," + depositAmount + " " + "\n"); //fixed bug
 			writer.flush();
 			System.out.println("Data Saved to Transactions.csv");
 			writer.close();

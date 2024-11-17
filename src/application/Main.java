@@ -30,5 +30,5 @@ public class Main extends Application {
 	}
 	
 	//confirmed we're good
-	
+	//11/16/2024 fixed bug
 }
