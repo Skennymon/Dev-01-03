@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -37,11 +40,13 @@ public class ViewScheduledTransactionController implements Initializable, DataAc
 	private TableColumn<ScheduleTransactionBean, String> dueDateCol;
 	@FXML
 	private TableColumn<ScheduleTransactionBean, String> paymentAmountCol;
-	
+	@FXML
+	private TextField keywordTextField;
+
 
 	public void initialize(URL url, ResourceBundle bundle) {
-		ObservableList<ScheduleTransactionBean> accountList = FXCollections.observableArrayList();
-		
+		ObservableList<ScheduleTransactionBean> scheduleTransactionList = FXCollections.observableArrayList();
+
 		scheduleNameCol.setCellValueFactory(new PropertyValueFactory<ScheduleTransactionBean, String>("scheduleName"));
 		accountCol.setCellValueFactory(new PropertyValueFactory<ScheduleTransactionBean, String>("account"));
 		transactionTypeCol.setCellValueFactory(new PropertyValueFactory<ScheduleTransactionBean, String>("transactionType"));
@@ -49,14 +54,36 @@ public class ViewScheduledTransactionController implements Initializable, DataAc
 		dueDateCol.setCellValueFactory(new PropertyValueFactory<ScheduleTransactionBean, String>("dueDate"));
 		paymentAmountCol.setCellValueFactory(new PropertyValueFactory<ScheduleTransactionBean, String>("paymentAmount"));
 
-		accountList = loadScheduledTransactionsInfo(); //change to load scheduledTransactionData();
-		scheduledTransactionTable.setItems(accountList);
+		scheduleTransactionList = loadScheduledTransactionsInfo(); //change to load scheduledTransactionData();
+		scheduledTransactionTable.setItems(scheduleTransactionList);
 
 		dueDateCol.setSortType(TableColumn.SortType.ASCENDING);
 		scheduledTransactionTable.getSortOrder().add(dueDateCol);
 		scheduledTransactionTable.sort();
+
+		//implements search functionality
+		FilteredList<ScheduleTransactionBean> filteredData = new FilteredList<>(scheduleTransactionList, b -> true);
+		keywordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(ScheduleTransactionBean -> {
+				if(newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+					return true;
+				}
+
+				String searchKeyWord = newValue.toLowerCase();
+				if(ScheduleTransactionBean.getScheduleName().toLowerCase().indexOf(searchKeyWord) > -1) {
+					return true;
+				}
+				return false;
+			});
+		});
+
+		SortedList<ScheduleTransactionBean> sortedData = new SortedList<>(filteredData);
+
+		sortedData.comparatorProperty().bind(scheduledTransactionTable.comparatorProperty());
+
+		scheduledTransactionTable.setItems(sortedData);
 	}
-	
+
 	public void switchToHomeScene(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

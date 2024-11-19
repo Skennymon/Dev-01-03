@@ -3,7 +3,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ViewTransactionController">
    <children>
@@ -18,5 +20,7 @@
         </columns>
       </TableView>
       <Button layoutX="47.0" layoutY="679.0" mnemonicParsing="false" onAction="#switchToHomeScene" prefHeight="25.0" prefWidth="68.0" text="Back" />
+      <TextField fx:id="keywordTextField" layoutX="203.0" layoutY="24.0" prefHeight="25.0" prefWidth="198.0" promptText="Enter Keywords..." />
+      <Text layoutX="75.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for Transaction" wrappingWidth="138.13671875" />
    </children>
 </Pane>
