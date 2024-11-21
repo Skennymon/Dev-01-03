@@ -152,7 +152,17 @@ public class EditScheduledTransactionController implements Initializable, DataAc
 		
 		//now all we need to do is make a editSaveScheduleTransactionInfo()
 		editSaveScheduleTransactionInfo(scheduleNameInput.getText(), accountInput.getValue(), transactionTypeInput.getValue(), frequencyInput.getValue(), dueDateInput.getText(), paymentAmountInput.getText(), scheduledTransaction, scheduledTransactionList);
-		Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("ViewScheduledTransactionScene.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void switchToViewScheduleTransactionScene(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewScheduledTransactionScene.fxml"));
+		Parent root = loader.load();
+		
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

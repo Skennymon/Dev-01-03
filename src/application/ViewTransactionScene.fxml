@@ -20,7 +20,7 @@
         </columns>
       </TableView>
       <Button layoutX="47.0" layoutY="679.0" mnemonicParsing="false" onAction="#switchToHomeScene" prefHeight="25.0" prefWidth="68.0" text="Back" />
-      <TextField fx:id="keywordTextField" layoutX="203.0" layoutY="24.0" prefHeight="25.0" prefWidth="198.0" promptText="Enter Keywords..." />
+      <TextField fx:id="keywordTextField" layoutX="203.0" layoutY="24.0" prefHeight="25.0" prefWidth="198.0" promptText="Transaction Description" />
       <Text layoutX="75.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for Transaction" wrappingWidth="138.13671875" />
       <Button layoutX="133.0" layoutY="679.0" mnemonicParsing="false" onAction="#switchToEditScene" prefHeight="25.0" prefWidth="68.0" text="Edit" />
    </children>
