@@ -47,10 +47,10 @@ public class ViewScheduledTransactionController implements Initializable, DataAc
 	@FXML
 	private TextField keywordTextField;
 	private ScheduleTransactionBean selectedScheduledTransaction;
-	
+	ObservableList<ScheduleTransactionBean> scheduleTransactionList;
 
 	public void initialize(URL url, ResourceBundle bundle) {
-		ObservableList<ScheduleTransactionBean> scheduleTransactionList = FXCollections.observableArrayList();
+		scheduleTransactionList = FXCollections.observableArrayList();
 
 		scheduleNameCol.setCellValueFactory(new PropertyValueFactory<ScheduleTransactionBean, String>("scheduleName"));
 		accountCol.setCellValueFactory(new PropertyValueFactory<ScheduleTransactionBean, String>("account"));
@@ -61,7 +61,14 @@ public class ViewScheduledTransactionController implements Initializable, DataAc
 
 		scheduleTransactionList = loadScheduledTransactionsInfo(); //change to load scheduledTransactionData();
 		scheduledTransactionTable.setItems(scheduleTransactionList);
-
+		
+		//this could've been avoided if I set due date to a Integer instead of a string AUUUGHHH
+		dueDateCol.setComparator((s1, s2) -> {
+            Integer num1 = Integer.parseInt(s1);
+            Integer num2 = Integer.parseInt(s2);
+            return num1.compareTo(num2);
+        });
+		
 		dueDateCol.setSortType(TableColumn.SortType.ASCENDING);
 		scheduledTransactionTable.getSortOrder().add(dueDateCol);
 		scheduledTransactionTable.sort();
@@ -125,9 +132,9 @@ public class ViewScheduledTransactionController implements Initializable, DataAc
 		
 		//add controller logic here
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("EditScheduleTransactionScene.fxml"));
-		Parent root = loader.load(); //this line sucks
+		Parent root = loader.load(); 
 		EditScheduledTransactionController controller = loader.getController();
-		controller.setScheduledTransaction(selectedScheduledTransaction);
+		controller.setScheduledTransaction(selectedScheduledTransaction, scheduleTransactionList);
 		
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);

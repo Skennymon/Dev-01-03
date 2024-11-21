@@ -59,6 +59,26 @@ public interface DataAccessLayer {
 			e.printStackTrace();
 		}
 	}
+	
+	default void editSaveScheduleTransactionInfo(String scheduleName, String account, String transactionType, String frequency, String dueDate, String paymentAmount, ScheduleTransactionBean editedScheduledTransaction, ObservableList<ScheduleTransactionBean> scheduledTransactionList) {
+		try(FileWriter writer = new FileWriter("ScheduledTransactions.csv")) {
+			
+			for(int i = 0; i < scheduledTransactionList.size(); i++) {
+				if(scheduledTransactionList.get(i).equals(editedScheduledTransaction)) {
+					continue;
+				}
+				else {
+					writer.write(scheduledTransactionList.get(i).getScheduleName() + "," + scheduledTransactionList.get(i).getAccount() + "," + scheduledTransactionList.get(i).getTransactionType() + "," + scheduledTransactionList.get(i).getFrequency() + "," + scheduledTransactionList.get(i).getDueDate() + "," + scheduledTransactionList.get(i).getPaymentAmount() + "\n");
+				}
+			}
+			writer.write(scheduleName + "," + account + "," + transactionType + "," + frequency + "," + dueDate + "," + paymentAmount + "\n");
+			System.out.println("Data Saved to ScheduledTransactions.csv");
+			writer.close();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	// reads all the accounts saved in the csv file and returns a list
 	default ObservableList<Account> loadAccountData() {

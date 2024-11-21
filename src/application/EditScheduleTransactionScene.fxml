@@ -20,7 +20,7 @@
       <Text layoutX="411.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type" wrappingWidth="123.13671875" />
       <Text layoutX="411.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency" />
       <Button layoutX="379.0" layoutY="648.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="65.0" text="Back" />
-      <Button layoutX="576.0" layoutY="648.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="74.0" text="Save" />
+      <Button layoutX="576.0" layoutY="648.0" mnemonicParsing="false" onAction="#save" prefHeight="40.0" prefWidth="74.0" text="Save" />
       <Label layoutX="372.0" layoutY="42.0" prefHeight="49.0" prefWidth="281.0" text="Edit Schedule Transaction">
          <font>
             <Font size="24.0" />
