@@ -37,6 +37,28 @@ public interface DataAccessLayer {
 			e.printStackTrace();
 		}
 	}
+	
+	//the difference between saveTransactionInfo and editSaveTransactionInfo is that editSaveTransactionInfo OVERWRITES Transactions.csv instead of appending to it
+	default void editSaveTransactionInfo(String account, String transactionType, LocalDate transactionDate, String transactionDescription, String paymentAmount, String depositAmount, ObservableList<Transaction> transactionList, Transaction editedTransaction) {
+		try (FileWriter writer = new FileWriter("Transactions.csv")) {
+			
+			for(int i = 0; i < transactionList.size(); i++) {
+				if(transactionList.get(i).equals(editedTransaction)) {
+					continue;
+				}
+				else {
+					writer.write(transactionList.get(i).getAccount() + "," + transactionList.get(i).getTransactionType() + "," + transactionList.get(i).getTransactionDate() + "," + transactionList.get(i).getTransactionDescription() + "," + transactionList.get(i).getPaymentAmount() + "," + transactionList.get(i).getDepositAmount() + "," + " " + "\n");
+				}
+			}
+			
+			writer.write(account + "," + transactionType + "," + transactionDate + "," + transactionDescription + "," + paymentAmount + "," + depositAmount + " " + "\n"); //fixed bug
+			writer.flush();
+			System.out.println("Data Saved to Transactions.csv");
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	// reads all the accounts saved in the csv file and returns a list
 	default ObservableList<Account> loadAccountData() {

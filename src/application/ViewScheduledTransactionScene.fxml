@@ -22,5 +22,6 @@
       <Button layoutX="65.0" layoutY="683.0" mnemonicParsing="false" onAction="#switchToHomeScene" text="Back" />
       <TextField fx:id="keywordTextField" layoutX="275.0" layoutY="25.0" promptText="Schedule Name..." />
       <Text layoutX="117.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Schedule Transaction" />
+      <Button layoutX="130.0" layoutY="683.0" mnemonicParsing="false" onAction="#switchToEditScene" prefHeight="25.0" prefWidth="62.0" text="Edit" />
    </children>
 </Pane>

@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -15,10 +16,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ViewScheduledTransactionController implements Initializable, DataAccessLayer {
@@ -42,7 +46,8 @@ public class ViewScheduledTransactionController implements Initializable, DataAc
 	private TableColumn<ScheduleTransactionBean, String> paymentAmountCol;
 	@FXML
 	private TextField keywordTextField;
-
+	private ScheduleTransactionBean selectedScheduledTransaction;
+	
 
 	public void initialize(URL url, ResourceBundle bundle) {
 		ObservableList<ScheduleTransactionBean> scheduleTransactionList = FXCollections.observableArrayList();
@@ -82,10 +87,48 @@ public class ViewScheduledTransactionController implements Initializable, DataAc
 		sortedData.comparatorProperty().bind(scheduledTransactionTable.comparatorProperty());
 
 		scheduledTransactionTable.setItems(sortedData);
+		
+		//check for click event
+		scheduledTransactionTable.setOnMouseClicked((MouseEvent event) -> {
+			if(event.getClickCount() >= 1) {
+				selectedScheduledTransaction = getScheduledTransaction();
+			}
+		});
+			
 	}
 
 	public void switchToHomeScene(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public ScheduleTransactionBean getScheduledTransaction() {
+		ScheduleTransactionBean selectedScheduledTransaction = null;
+		if(scheduledTransactionTable.getSelectionModel().getSelectedItem() != null) {
+			selectedScheduledTransaction = scheduledTransactionTable.getSelectionModel().getSelectedItem();
+		}
+		
+		return selectedScheduledTransaction;
+	}
+	
+	public void switchToEditScene(ActionEvent event) throws IOException {
+		if(selectedScheduledTransaction == null) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Alert!");
+			alert.setContentText("Please select a scheduled transaction to edit!");
+			Optional<ButtonType> result = alert.showAndWait();
+			return;
+		}
+		
+		//add controller logic here
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("EditScheduleTransactionScene.fxml"));
+		Parent root = loader.load(); //this line sucks
+		EditScheduledTransactionController controller = loader.getController();
+		controller.setScheduledTransaction(selectedScheduledTransaction);
+		
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

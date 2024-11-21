@@ -3,13 +3,13 @@ package application;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,10 +24,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class NewTransactionController implements Initializable, DataAccessLayer {
+import java.text.SimpleDateFormat;
 
-	private Stage stage;
-	private Scene scene;
+public class EditTransactionController implements Initializable, DataAccessLayer {
 
 	@FXML
 	private ChoiceBox<String> accountDropdownInput;
@@ -41,8 +40,13 @@ public class NewTransactionController implements Initializable, DataAccessLayer 
 	private TextField paymentAmountInput;
 	@FXML
 	private TextField depositAmountInput;
+	private Transaction transaction; //the current transaction being edited
+	private ObservableList<Transaction> list;
+	private Stage stage;
+	private Scene scene;
 
 	public void initialize(URL url, ResourceBundle bundle) {
+		
 		transactionDateInput.setValue(LocalDate.now());
 		try {
 			populateAccountMenu("Accounts.csv");
@@ -73,44 +77,23 @@ public class NewTransactionController implements Initializable, DataAccessLayer 
 			alert.setContentText("Please define a transactiontype first!");
 			Optional<ButtonType> result = alert.showAndWait();
 		}
-
+		
+		return;
 	}
+	
+	
+	
+	
 
-	//grabs the account.csv file and populates the accountmenu with the accounts
-	public void populateAccountMenu(String filepath) throws IOException {
-		File file = new File(filepath);
-		if(file.exists()) {
-			//populate table
-			BufferedReader br = new BufferedReader(new FileReader("Accounts.csv"));
-			String line;
-			while((line = br.readLine()) != null) {
-				accountDropdownInput.getItems().add((line.split(","))[0]);
-			}
-		}
-		else {
-			return;
-		}
-	}
-
-	//populate the transaction menu from the TransactionType.csv file
-	public void populateTransactionMenu(String filepath) throws IOException {
-		File file = new File(filepath);
-		if(file.exists()) {
-			//populate table						
-			BufferedReader br = new BufferedReader(new FileReader("TransactionType.csv"));
-			String line;
-			while((line = br.readLine()) != null) {
-				transactionTypeDropdownInput.getItems().add(line);
-			}
-		}
-		else {
-			return;
-		}
-	}
-
-	//saves to a new Transactions.csv file
 	public void save(ActionEvent event) throws IOException {
-
+		/*
+		 * Copy and Paste the save() from newTransactionController
+		 * 
+		 * Add logic to check if the new inputted transaction name is already in transaction.csv
+		 * If it isn't, then overwrite transaction.csv using ObservableList<Transaction> list
+		 * BTW only run the logic for checkDuplicates() if and only if the new inputted transaction name isn't the same as the previous one
+		 */
+		
 		//check if user entered all fields, if checks if either deposit or payment or both are filled in correctly and saves it if its good
 		if(transactionDescriptionInput.getText().isEmpty() || accountDropdownInput.getItems().isEmpty() || transactionTypeDropdownInput.getItems().isEmpty() || transactionDateInput.getValue() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -147,8 +130,9 @@ public class NewTransactionController implements Initializable, DataAccessLayer 
 				Optional<ButtonType> result = alert.showAndWait();
 				return;
 			}
-			saveTransactionInfo(accountDropdownInput.getValue(), transactionTypeDropdownInput.getValue(), transactionDateInput.getValue(), transactionDescriptionInput.getText(), paymentAmountInput.getText(), depositAmountInput.getText());
-			Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
+			//edit this
+			editSaveTransactionInfo(accountDropdownInput.getValue(), transactionTypeDropdownInput.getValue(), transactionDateInput.getValue(), transactionDescriptionInput.getText(), paymentAmountInput.getText(), depositAmountInput.getText(), list, transaction);
+			Parent root = FXMLLoader.load(getClass().getResource("ViewTransactionScene.fxml"));
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -165,8 +149,9 @@ public class NewTransactionController implements Initializable, DataAccessLayer 
 				Optional<ButtonType> result = alert.showAndWait();
 				return;
 			}
-			saveTransactionInfo(accountDropdownInput.getValue(), transactionTypeDropdownInput.getValue(), transactionDateInput.getValue(), transactionDescriptionInput.getText(), paymentAmountInput.getText(), depositAmountInput.getText());
-			Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
+			//edit this
+			editSaveTransactionInfo(accountDropdownInput.getValue(), transactionTypeDropdownInput.getValue(), transactionDateInput.getValue(), transactionDescriptionInput.getText(), paymentAmountInput.getText(), depositAmountInput.getText(), list, transaction);
+			Parent root = FXMLLoader.load(getClass().getResource("ViewTransactionScene.fxml"));
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -183,17 +168,60 @@ public class NewTransactionController implements Initializable, DataAccessLayer 
 				Optional<ButtonType> result = alert.showAndWait();
 				return;
 			}
+			//edit this to checkDuplicates and change method()
 			
-			saveTransactionInfo(accountDropdownInput.getValue(), transactionTypeDropdownInput.getValue(), transactionDateInput.getValue(), transactionDescriptionInput.getText(), paymentAmountInput.getText(), depositAmountInput.getText());
-			Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
+			editSaveTransactionInfo(accountDropdownInput.getValue(), transactionTypeDropdownInput.getValue(), transactionDateInput.getValue(), transactionDescriptionInput.getText(), paymentAmountInput.getText(), depositAmountInput.getText(), list, transaction);
+			Parent root = FXMLLoader.load(getClass().getResource("ViewTransactionScene.fxml"));
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
-		}
-
+		}	
 	}
 
+	//grabs the account.csv file and populates the accountmenu with the accounts
+	public void populateAccountMenu(String filepath) throws IOException {
+		File file = new File(filepath);
+		if(file.exists()) {
+			//populate table
+			BufferedReader br = new BufferedReader(new FileReader("Accounts.csv"));
+			String line;
+			while((line = br.readLine()) != null) {
+				accountDropdownInput.getItems().add((line.split(","))[0]);
+			}
+		}
+		else {
+			return;
+		}
+	}
+
+	//populate the transaction menu from the TransactionType.csv file
+	public void populateTransactionMenu(String filepath) throws IOException {
+		File file = new File(filepath);
+		if(file.exists()) {
+			//populate table						
+			BufferedReader br = new BufferedReader(new FileReader("TransactionType.csv"));
+			String line;
+			while((line = br.readLine()) != null) {
+				transactionTypeDropdownInput.getItems().add(line);
+			}
+		}
+		else {
+			return;
+		}
+	}
+
+	public void setTransaction(Transaction transaction, ObservableList<Transaction> list) {
+		this.transaction = transaction;
+		this.list = list;
+		accountDropdownInput.setValue(transaction.getAccount());
+		transactionTypeDropdownInput.setValue(transaction.getTransactionType());
+		transactionDateInput.setValue(LocalDate.parse(transaction.getTransactionDate()));
+		transactionDescriptionInput.setText(transaction.getTransactionDescription());
+		paymentAmountInput.setText(transaction.getPaymentAmount());
+		depositAmountInput.setText(transaction.getDepositAmount()); 
+	}
+	
 	public void switchToHomeScene(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -201,7 +229,15 @@ public class NewTransactionController implements Initializable, DataAccessLayer 
 		stage.setScene(scene);
 		stage.show();
 	}
-
-
-
+	
+	public void switchToViewTransactionScene(ActionEvent event) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewTransactionScene.fxml"));
+		Parent root = loader.load();
+		
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
 }

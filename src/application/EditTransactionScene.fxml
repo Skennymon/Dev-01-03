@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EditTransactionController">
+   <children>
+      <Text layoutX="384.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Transaction" wrappingWidth="261.26171875">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <TextField fx:id="transactionDescriptionInput" layoutX="415.0" layoutY="398.0" prefHeight="48.0" prefWidth="195.0" promptText="Transaction Description" />
+      <ChoiceBox fx:id="accountDropdownInput" layoutX="415.0" layoutY="139.0" prefHeight="48.0" prefWidth="195.0" />
+      <ChoiceBox fx:id="transactionTypeDropdownInput" layoutX="415.0" layoutY="222.0" prefHeight="48.0" prefWidth="195.0" />
+      <DatePicker fx:id="transactionDateInput" layoutX="415.0" layoutY="308.0" prefHeight="48.0" prefWidth="195.0" promptText="Transaction Date" />
+      <TextField fx:id="depositAmountInput" layoutX="415.0" layoutY="591.0" prefHeight="48.0" prefWidth="195.0" promptText="Deposit Amount" />
+      <TextField fx:id="paymentAmountInput" layoutX="415.0" layoutY="494.0" prefHeight="48.0" prefWidth="195.0" promptText="Payment Amount" />
+      <Text layoutX="415.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" />
+      <Text layoutX="415.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type" wrappingWidth="100.13671875" />
+      <Button layoutX="548.0" layoutY="666.0" mnemonicParsing="false" onAction="#save" prefHeight="40.0" prefWidth="71.0" text="Save" />
+      <Button layoutX="459.0" layoutY="666.0" mnemonicParsing="false" onAction="#switchToViewTransactionScene" prefHeight="40.0" prefWidth="71.0" text="Back" />
+      <Text layoutX="415.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Date" />
+   </children>
+</AnchorPane>

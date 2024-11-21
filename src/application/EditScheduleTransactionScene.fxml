@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ScheduleTransactionController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EditScheduledTransactionController">
    <children>
       <TextField fx:id="scheduleNameInput" layoutX="411.0" layoutY="105.0" prefHeight="65.0" prefWidth="202.0" promptText="Schedule Name" />
       <TextField fx:id="dueDateInput" layoutX="411.0" layoutY="465.0" prefHeight="65.0" prefWidth="202.0" promptText="Due Date" />
@@ -19,9 +19,9 @@
       <Text layoutX="411.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" wrappingWidth="123.13671875" />
       <Text layoutX="411.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type" wrappingWidth="123.13671875" />
       <Text layoutX="411.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency" />
-      <Button layoutX="379.0" layoutY="648.0" mnemonicParsing="false" onAction="#switchToHomeScene" prefHeight="40.0" prefWidth="65.0" text="Back" />
-      <Button layoutX="576.0" layoutY="648.0" mnemonicParsing="false" onAction="#save" prefHeight="40.0" prefWidth="74.0" text="Save" />
-      <Label layoutX="398.0" layoutY="42.0" prefHeight="49.0" prefWidth="228.0" text="Schedule Transaction">
+      <Button layoutX="379.0" layoutY="648.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="65.0" text="Back" />
+      <Button layoutX="576.0" layoutY="648.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="74.0" text="Save" />
+      <Label layoutX="372.0" layoutY="42.0" prefHeight="49.0" prefWidth="281.0" text="Edit Schedule Transaction">
          <font>
             <Font size="24.0" />
          </font>

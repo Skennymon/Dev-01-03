@@ -26,6 +26,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ViewTransactionController implements Initializable, DataAccessLayer {
@@ -46,13 +47,15 @@ public class ViewTransactionController implements Initializable, DataAccessLayer
 	private TableColumn<Transaction, String> depositAmountCol;
 	@FXML
 	private TextField keywordTextField;
+	private Transaction selectedTransaction;
+	private ObservableList<Transaction> transactionList;
 	
 	private Parent root;
 	private Scene scene;
 	private Stage stage;
 	
 	public void initialize(URL url, ResourceBundle bundle) {
-		ObservableList<Transaction> transactionList = FXCollections.observableArrayList();
+		transactionList = FXCollections.observableArrayList();
 		
 		//sets each column to its respective attribute
 		accountCol.setCellValueFactory(new PropertyValueFactory<Transaction, String>("account"));
@@ -92,10 +95,52 @@ public class ViewTransactionController implements Initializable, DataAccessLayer
 		
 		transactionTable.setItems(sortedData);
 		
+		//checks for click events
+		transactionTable.setOnMouseClicked((MouseEvent event) -> {
+			if(event.getClickCount() >= 1) {
+				selectedTransaction = getTransaction();
+			}
+		});
+		
 		
 		
 	}
 	
+	public Transaction getTransaction() {
+		
+		Transaction selectedTransaction = null;
+		
+		if(transactionTable.getSelectionModel().getSelectedItem() != null) {
+			selectedTransaction = transactionTable.getSelectionModel().getSelectedItem();
+		}
+		
+		return selectedTransaction;
+	}
+	
+	public void switchToEditScene(ActionEvent event) throws IOException {
+		
+		if(selectedTransaction == null) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Alert!");
+			alert.setContentText("Please select a transaction to edit!");
+			Optional<ButtonType> result = alert.showAndWait();
+			return;
+		}
+		
+		
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("EditTransactionScene.fxml"));
+		root = loader.load();
+		EditTransactionController controller = loader.getController();
+		controller.setTransaction(selectedTransaction, transactionList);
+		
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+		
+		
+	}
 	
 	public void switchToHomeScene(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("HomeScene.fxml"));
