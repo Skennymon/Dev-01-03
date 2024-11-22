@@ -74,7 +74,7 @@ public class ScheduleTransactionController implements Initializable, DataAccessL
 			}
 		}
 		else {
-			return;
+			throw new IOException();
 		}
 	}
 
@@ -90,7 +90,7 @@ public class ScheduleTransactionController implements Initializable, DataAccessL
 			}
 		}
 		else {
-			return;
+			throw new IOException();
 		}
 	}
 	

@@ -103,10 +103,10 @@ public class EditScheduledTransactionController implements Initializable, DataAc
 		this.scheduledTransaction = scheduledTransaction;
 		this.scheduledTransactionList = list;
 		accountInput.setValue(scheduledTransaction.getAccount());
-		scheduleNameInput.setText(scheduledTransaction.getScheduleName());
+		scheduleNameInput.setText(scheduledTransaction.getScheduleName().trim());
 		transactionTypeInput.setValue(scheduledTransaction.getTransactionType());
-		dueDateInput.setText(scheduledTransaction.getDueDate());
-		paymentAmountInput.setText(scheduledTransaction.getPaymentAmount());
+		dueDateInput.setText(scheduledTransaction.getDueDate().trim());
+		paymentAmountInput.setText(scheduledTransaction.getPaymentAmount().trim());
 	}
 	
 	public void save(ActionEvent event) throws IOException {

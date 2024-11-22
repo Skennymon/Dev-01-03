@@ -217,9 +217,9 @@ public class EditTransactionController implements Initializable, DataAccessLayer
 		accountDropdownInput.setValue(transaction.getAccount());
 		transactionTypeDropdownInput.setValue(transaction.getTransactionType());
 		transactionDateInput.setValue(LocalDate.parse(transaction.getTransactionDate()));
-		transactionDescriptionInput.setText(transaction.getTransactionDescription());
-		paymentAmountInput.setText(transaction.getPaymentAmount());
-		depositAmountInput.setText(transaction.getDepositAmount()); 
+		transactionDescriptionInput.setText(transaction.getTransactionDescription().trim());
+		paymentAmountInput.setText(transaction.getPaymentAmount().trim());
+		depositAmountInput.setText(transaction.getDepositAmount().trim()); 
 	}
 	
 	public void switchToHomeScene(ActionEvent event) throws IOException {
