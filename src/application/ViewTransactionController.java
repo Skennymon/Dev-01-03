@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
@@ -85,6 +86,7 @@ public class ViewTransactionController implements Initializable, DataAccessLayer
 				if(Transaction.getTransactionDescription().toLowerCase().indexOf(searchKeyWord) > -1) {
 					return true;
 				}
+								
 				return false;
 			});
 		});

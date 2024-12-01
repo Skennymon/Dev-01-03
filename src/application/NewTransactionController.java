@@ -41,6 +41,7 @@ public class NewTransactionController implements Initializable, DataAccessLayer 
 	private TextField paymentAmountInput;
 	@FXML
 	private TextField depositAmountInput;
+	
 
 	public void initialize(URL url, ResourceBundle bundle) {
 		transactionDateInput.setValue(LocalDate.now());
