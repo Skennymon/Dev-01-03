@@ -83,7 +83,7 @@ public class AccountReportController implements Initializable, DataAccessLayer {
 
 		//TODO: Add a listener for whenever a user clicks a transaction which switches to a read-only page with the transaction details
 		transactionTable.setOnMouseClicked((MouseEvent event) -> {
-			if(event.getClickCount() == 1) {
+			if(event.getClickCount() >= 1) {
 				selectedTransaction = transactionTable.getSelectionModel().getSelectedItem();
 			}
 		});
@@ -145,5 +145,7 @@ public class AccountReportController implements Initializable, DataAccessLayer {
 
 
 	}
+	
+	
 
 }

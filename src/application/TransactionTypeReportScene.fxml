@@ -18,8 +18,9 @@
             <TableColumn fx:id="depositAmountCol" prefWidth="153.0" text="Deposit Amount" />
         </columns>
       </TableView>
-      <Button layoutX="61.0" layoutY="695.0" mnemonicParsing="false" text="Back" />
+      <Button layoutX="61.0" layoutY="695.0" mnemonicParsing="false" onAction="#switchToHomeScene" text="Back" />
       <ChoiceBox fx:id="transactionTypeOfReport" layoutX="297.0" layoutY="24.0" prefWidth="150.0" />
       <Text layoutX="120.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Get Report of Transaction Type" />
+      <Button layoutX="113.0" layoutY="695.0" mnemonicParsing="false" onAction="#switchToReadOnlyTransaction2" text="View Transaction" />
    </children>
 </Pane>
