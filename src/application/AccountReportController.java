@@ -105,7 +105,8 @@ public class AccountReportController implements Initializable, DataAccessLayer {
 			return;
 		}
 	}
-
+	
+	//when the user comes back to the report screen it keeps the state the page was in when the user viewed it
 	public void setAccount(String account) {
 		this.currentAccount = account;
 		accountOfReport.setValue(accountOfReport.getItems().get(accountOfReport.getItems().indexOf(account)));
