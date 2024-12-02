@@ -257,5 +257,33 @@ public interface DataAccessLayer {
 		
 	}
 	
+	default void checkForDuedSchedules() {
+		LocalDate currentDate = LocalDate.now();
+		
+		int day = currentDate.getDayOfMonth();
+		int amountTransactionsDue = 0;
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("ScheduledTransactions.csv"));
+			String line;
+			while((line = br.readLine()) != null) {
+				String[] transaction = line.split(",");
+				if(Integer.parseInt(transaction[4]) == day) {
+					amountTransactionsDue++;
+				}
+			}
+		}
+		catch(IOException e) {
+			return;
+		}
+		
+		if(amountTransactionsDue > 0) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Alert!");
+			alert.setContentText("You have " + amountTransactionsDue + " transaction due today!");
+			Optional<ButtonType> result = alert.showAndWait();			
+		}
+	}
+	
 
 }
