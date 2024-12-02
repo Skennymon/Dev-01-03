@@ -162,6 +162,36 @@ public interface DataAccessLayer {
 		return transactionList;
 	}
 	
+	//overloading some crap
+	default ObservableList<Transaction> loadTransactionDataByTransactionType(String transactionType) {
+		ObservableList<Transaction> transactionList = FXCollections.observableArrayList();
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("Transactions.csv"));
+			String line;
+			while((line = br.readLine()) != null) {
+				String[] transaction = line.split(",");
+				
+				if(transaction[1].equals(transactionType)) {
+					transactionList.add(new Transaction(transaction[0], transaction[1], transaction[2], transaction[3], transaction[4], transaction[5]));
+				}
+			}
+			br.close();
+		}
+		catch (FileNotFoundException e) {
+			
+		}
+		catch (IOException e) {
+			
+		}
+		
+		
+		
+		return transactionList;
+		
+		
+	}
+	
 	default void saveAccountInfo(String name, LocalDate date, String balance) {
 		try (FileWriter writer = new FileWriter("Accounts.csv", true)) {
 			writer.write(name + "," + date.toString() + "," + balance + "\n");

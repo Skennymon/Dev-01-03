@@ -55,16 +55,17 @@ public class AccountReportController implements Initializable, DataAccessLayer {
 
 		transactionList = FXCollections.observableArrayList();
 
-
+		
 		accountOfReport.setValue(accountOfReport.getItems().get(0));
 		currentAccount = accountOfReport.getItems().get(0);
 		transactionList = loadTransactionDataByAccount(accountOfReport.getValue());
 
 
-
+		/*
 		accountOfReport.setValue(accountOfReport.getItems().get(0));
 		transactionList = loadTransactionDataByAccount(accountOfReport.getValue());
-
+		*/
+		
 		transactionTable.setItems(transactionList);
 
 		//sets to descending order by date

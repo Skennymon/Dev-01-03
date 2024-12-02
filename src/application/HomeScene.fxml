@@ -20,6 +20,6 @@
       <Button layoutX="447.0" layoutY="410.0" mnemonicParsing="false" onAction="#switchToNewTransactionScene" prefHeight="51.0" prefWidth="130.0" text="Add New Transaction" />
       <Button layoutX="424.0" layoutY="664.0" mnemonicParsing="false" onAction="#switchToViewScheduleTransactionScene" prefHeight="51.0" prefWidth="177.0" text="View Scheduled Transactions" />
       <Button layoutX="100.0" layoutY="309.0" mnemonicParsing="false" onAction="#switchToAccountReportScene" prefHeight="85.0" prefWidth="177.0" text="Account Report" />
-      <Button layoutX="755.0" layoutY="309.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="177.0" text="Transaction Type Report" />
+      <Button layoutX="755.0" layoutY="309.0" mnemonicParsing="false" onAction="#switchToTransactionTypeReportScene" prefHeight="85.0" prefWidth="177.0" text="Transaction Type Report" />
    </children>
 </AnchorPane>
